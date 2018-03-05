@@ -10,6 +10,11 @@ import { UserComponent } from './users/user/user.component';
 import { EditLessonComponent } from './lessons/edit-lesson/edit-lesson.component';
 import { LessonComponent } from './lessons/lesson/lesson.component';
 import { LessonsService } from './lessons/lessons.service';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthService } from './auth.service';
+import { AuthGuard } from './auth-guard.service';
+import { LessonResolverService } from './lessons/lesson-resolver.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +24,15 @@ import { LessonsService } from './lessons/lessons.service';
     LessonsComponent,
     UserComponent,
     EditLessonComponent,
-    LessonComponent
+    LessonComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    AppRoutingModule
   ],
-  providers: [LessonsService],
+  providers: [LessonsService, AuthService, AuthGuard, LessonResolverService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

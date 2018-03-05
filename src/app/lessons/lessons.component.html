@@ -1,8 +1,10 @@
 <div class="row">
+  <a routerLink="../lessons">Reload</a>
   <div class="col-xs-12 col-sm-4">
     <div class="list-group">
       <a
-        href="#"
+        [routerLink]="['/lessons', lesson.id]"
+        [queryParams]="{allowEdit: lesson.id === 2 ? '0' : '1'}"
         class="list-group-item"
         *ngFor="let lesson of lessons">
         {{ lesson.name }}
@@ -10,9 +12,11 @@
     </div>
   </div>
   <div class="col-xs-12 col-sm-4">
-    <app-edit-lesson></app-edit-lesson>
-    <hr>
-    <app-lesson></app-lesson>
+    <router-outlet></router-outlet>
+    <!--<app-edit-lesson></app-edit-lesson>-->
+    <!--<hr>-->
+    <!--<app-lesson></app-lesson>-->
   </div>
+  <button class="btn btn-success" (click)="reload()">Reload</button>
 </div>
 

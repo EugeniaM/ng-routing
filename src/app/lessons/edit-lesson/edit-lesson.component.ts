@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
 import { LessonsService } from '../lessons.service';
+import {ActivatedRoute, Params} from '@angular/router';
+import {extractStyleParams} from '@angular/animations/browser/src/util';
 
 @Component({
   selector: 'app-edit-lesson',
@@ -11,13 +13,33 @@ export class EditLessonComponent implements OnInit {
   lesson: {id: number, name: string, status: string};
   lessonName = '';
   lessonStatus = '';
+  allowEdit = false;
 
-  constructor(private lessonsService: LessonsService) { }
+  constructor(
+    private lessonsService: LessonsService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.lesson = this.lessonsService.getLesson(1);
-    this.lessonName = this.lesson.name;
-    this.lessonStatus = this.lesson.status;
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.lesson = this.lessonsService.getLesson(+params['id']);
+          this.lessonName = this.lesson.name;
+          this.lessonStatus = this.lesson.status;
+        }
+      );
+    // console.log(this.route.snapshot.queryParams);
+    this.route.queryParams
+      .subscribe(
+        (queryParams: Params) => {
+          if (queryParams.allowEdit === '1') {
+            this.allowEdit = true;
+          } else {
+            this.allowEdit = false;
+          }
+        }
+      );
   }
 
   onUpdateLesson() {
