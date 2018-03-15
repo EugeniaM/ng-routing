@@ -7,7 +7,7 @@
         [queryParams]="{allowEdit: lesson.id === 2 ? '0' : '1'}"
         class="list-group-item"
         *ngFor="let lesson of lessons">
-        {{ lesson.name }}
+        {{ lesson.name | super }}
       </a>
     </div>
   </div>
