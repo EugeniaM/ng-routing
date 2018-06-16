@@ -12,7 +12,7 @@ npm run build
 $ docker build -t image-name . 
 ```
 
-##Push image to registry (DickerHub)
+## Push image to registry (DickerHub)
 ```
 $ docker tag image-name username/repository:tag
 $ docker push username/repository:tag
