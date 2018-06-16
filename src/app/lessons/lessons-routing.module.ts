@@ -16,7 +16,7 @@ const lessonsRoutes: Routes = [
       { path: ':id/edit', component: EditLessonComponent }
     ]
   },
-]
+];
 
 @NgModule({
   imports: [ RouterModule.forChild(lessonsRoutes) ],
